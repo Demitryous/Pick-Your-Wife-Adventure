@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pick Your Wife Adventure: Slip, Laugh, Love</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #fff0f5;
+            margin: 0;
+            padding: 2rem;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #cc3366;
+            text-align: center;
+        }
+        .scene {
+            display: none;
+        }
+        .scene.active {
+            display: block;
+        }
+        .choices button {
+            background-color: #cc3366;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .choices button:hover {
+            background-color: #aa2a55;
+        }
+        .emoji {
+            font-size: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pick Your Wife Adventure: Slip, Laugh, Love</h1>
+
+        <div id="scene1" class="scene active">
+            <p>You’re walking outside together. The world is peaceful. The sidewalk, however, is NOT.</p>
+            <div class="emoji">❄️👟</div>
+            <div class="choices">
+                <button onclick="goToScene('scene2a')">A. Warn her about the ice</button>
+                <button onclick="goToScene('scene2b')">B. Film her just in case she slips</button>
+                <button onclick="goToScene('scene2c')">C. Pretend to trip yourself</button>
+            </div>
+        </div>
+
+        <div id="scene2a" class="scene">
+            <p>You lovingly warn her: “Hey babe, don’t die.”</p>
+            <p>She smirks. She already saw the ice… and walked around it like a majestic gazelle.</p>
+            <div class="emoji">🦌✨</div>
+            <div class="choices">
+                <button onclick="goToScene('scene3')">Continue</button>
+            </div>
+        </div>
+
+        <div id="scene2b" class="scene">
+            <p>You casually start filming... “for memories.”</p>
+            <p>She gives you the look. You know the one. But she slips a little and laughs. “You're the worst.”</p>
+            <div class="emoji">🎥❄️🤣</div>
+            <div class="choices">
+                <button onclick="goToScene('scene3')">Continue</button>
+            </div>
+        </div>
+
+        <div id="scene2c" class="scene">
+            <p>You dramatically trip like a soap opera actor in slow-mo.</p>
+            <p>She laughs so hard she almost *actually* slips again. “Karma!”</p>
+            <div class="emoji">💀❤️</div>
+            <div class="choices">
+                <button onclick="goToScene('scene3')">Continue</button>
+            </div>
+        </div>
+
+        <div id="scene3" class="scene">
+            <p>No matter what path you take…</p>
+            <p>You always end up with her. Because you always choose her. Every damn time.</p>
+            <div class="emoji">💘👩‍❤️‍👩</div>
+            <div class="choices">
+                <button onclick="goToScene('scene1')">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToScene(sceneId) {
+            var scenes = document.querySelectorAll('.scene');
+            for (var i = 0; i < scenes.length; i++) {
+                scenes[i].classList.remove('active');
+            }
+            var newScene = document.getElementById(sceneId);
+            if (newScene) {
+                newScene.classList.add('active');
+                window.scrollTo(0, 0); // Scroll to top when changing scenes
+            }
+        }
+    </script>
+</body>
+</html>
