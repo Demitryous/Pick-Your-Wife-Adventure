@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pick Your Wife Adventure: Slip, Laugh, Love</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fff0f5;
+            margin: 0;
+            padding: 2rem;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #cc3366;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .scene {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .scene.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .choices button {
+            background-color: #cc3366;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s ease;
+        }
+
+        .choices button:hover {
+            background-color: #aa2a55;
+        }
+
+        .emoji {
+            font-size: 2.2rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .music-player {
+            text-align: center;
+            margin: 1rem auto 2rem;
+        }
+
+        .hidden-video {
+            width: 0;
+            height: 0;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .easter-hint {
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 2rem;
+            color: #888;
+        }
+
+        .reveal-egg {
+            text-align: center;
+            margin-top: 1rem;
+            cursor: pointer;
+            color: #cc3366;
+            text-decoration: underline;
+        }
+
+        #easterEgg {
+            display: none;
+            background: #ffe0f0;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(204, 51, 102, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(204, 51, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(204, 51, 102, 0); }
+        }
+
+        .heart {
+            position: fixed;
+            top: -50px;
+            font-size: 1.5rem;
+            color: #f66;
+            animation: fall 10s linear infinite;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling hearts animation -->
+    <script>
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+        }
+    </script>
+
+    <div class="container">
+        <h1>Pick Your Wife Adventure: Slip, Laugh, Love</h1>
+
+        <div class="music-player">
+            <p>Now Playing: “Perfect” by Ed Sheeran</p>
+            <p style="font-size:0.9rem; color:#666;">(Tap the page to start audio if it doesn’t start automatically!)</p>
+            <iframe class="hidden-video"
+                src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1"
+                title="Perfect by Ed Sheeran" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
+        </div>
+
+        <div id="scene1" class="scene active">
+            <p>You’re walking outside together. The world is peaceful. The sidewalk, however, is NOT.</p>
+            <div class="emoji">❄️👟</div>
+            <div class="choices">
+                <button onclick="goToScene('scene2a')">A. Warn her about the ice</button>
+                <button onclick="goToScene('scene2b')">B. Film her just in case she slips</button>
+                <button onclick="goToScene('scene2c')">C. Pretend to trip yourself</button>
+            </div>
+        </div>
+
+        <div id="scene2a" class="scene">
+            <p>You lovingly warn her: “Hey babe, don’t die.”</p>
+            <p>She smirks. She already saw the ice… and walked around it like a majestic gazelle.</p>
+            <div class="emoji">🦌✨</div>
+            <div class="choices">
+                <button onclick="goToScene('scene3')">Continue</button>
+            </div>
+        </div>
+
+        <div id="scene2b" class="scene">
+            <p>You casually start filming... “for memories.”</p>
+            <p>She gives you the look. You know the one. But she slips a little and laughs. “You're the worst.”</p>
+            <div class="emoji">🎥❄️🤣</div>
+            <div class="choices">
+                <button onclick="goToScene('scene3')">Continue</button>
+            </div>
+        </div>
+
+        <div id="scene2c" class="scene">
+            <p>You dramatically trip like a soap opera actor in slow-mo.</p>
+            <p>She laughs so hard she almost *actually* slips again. “Karma!”</p>
+            <audio id="boing" src="https://www.soundjay.com/human/sounds/fart-pop-01.mp3" preload="auto"></audio>
+            <div class="emoji">💀❤️</div>
+            <div class="choices">
+                <button onclick="goToScene('scene3'); document.getElementById('boing').play();">Continue</button>
+            </div>
+        </div>
+
+        <div id="scene3" class="scene">
+            <p>No matter what path you take…</p>
+            <p>You always end up with her. Because you always choose her. Every damn time.</p>
+            <div class="emoji">💘👩‍❤️‍👩</div>
+            <div class="choices">
+                <button onclick="goToScene('scene1')">Play Again</button>
+            </div>
+        </div>
+
+        <div class="easter-hint">
+            P.S. There's a little secret hidden somewhere on this page. Only true love detectives will find it.
+        </div>
+        <div class="reveal-egg" onclick="revealEasterEgg()">Tap here if you're curious...</div>
+        <div id="easterEgg">
+            <p>CONGRATULATIONS! You found the hidden egg!</p>
+            <p>For surviving slips, laughs, and chaos, you are now officially:</p>
+            <p><strong>“THE LEGENDARY ICE QUEEN OF MY HEART”</strong></p>
+            <div class="emoji">👑❄️❤️</div>
+        </div>
+    </div>
+
+    <script>
+        function goToScene(sceneId) {
+            const scenes = document.querySelectorAll('.scene');
+            scenes.forEach(scene => {
+                scene.classList.remove('active');
+            });
+            const newScene = document.getElementById(sceneId);
+            newScene.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function revealEasterEgg() {
+            document.getElementById('easterEgg').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
